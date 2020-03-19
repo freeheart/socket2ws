@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>Tangmen--MUD</title>
+    <meta name="keywords" content="TM" />
+    <meta name="description" content="TM">
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="full-screen" content="true" />
+    <meta name="screen-orientation" content="portrait" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="360-fullscreen" content="true" />
+    <style>
+        html, body {
+            -ms-touch-action: none;
+            background: #1b1a1f url('raw/bg.jpg') no-repeat fixed center; 
+			color:#ffffff;
+            padding: 0;
+            border: 0;
+            margin: 0;
+            height: 100%;
+        }
+    </style>
+	</head>
+	<body>
+	zjmDMaIpOvxdb<br>
+	<div id=result style="height:80%;width:100%"></div>
+	<div style="width:100%;align:center">
+	<input id='wssend' style="width:70%"></input>
+	<input type=button value='发送' onclick='send()'/>
+	</div>
+</body>
+</html>
+<script>
+var socket = new WebSocket('ws://127.0.0.1:8080'); 
+var dres =document.getElementById('result')
+var dinput =document.getElementById('wssend')
+// 打开Socket 
+socket.onopen = function(event) { 
+
+  // 发送一个初始化消息
+  //socket.send('zjmDMaIpOvxdb'); 
+
+  // 监听消息
+  socket.onmessage = function(event) {
+		event.data
+		dres.innerHTML+=event.data
+		//console.log(event.data)
+  };
+
+  // 监听Socket的关闭
+  socket.onclose = function(event) { 
+    console.log('Client notified socket has closed',event); 
+  }; 
+
+  // 关闭Socket.... 
+  //socket.close() 
+};
+function send(){
+	socket.send(dinput.value)
+}
+var reader = new FileReader();
+reader.onload = function(event){
+	var content = reader.result;//内容就在这里
+};
+</script>
