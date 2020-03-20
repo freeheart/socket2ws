@@ -1,5 +1,8 @@
 /*
 index.js
+Copyright by Jinzhu.Zhang  2020 (Webname:freeheart)
+QQ:399192285
+mail:freeheart1977@139.com
 MUD Socket 2 WebSocket proxy
 */
 
@@ -67,5 +70,18 @@ var CleanTimer=setInterval(function(){
 			client.terminate();
 		}
     });
-	console.log(usernum)
+	//console.log(usernum)
 },5000)
+process.stdin.on('data',(input)=>{
+	var s=input.toString()
+	switch(s){
+		case 'usernum'+"\r\n":
+			console.log('目前用户：',usernum)
+			return;break;
+		case 'help'+"\r\n":
+			console.log('使用帮助')
+			return;break;
+		default:
+			break
+	}
+})
